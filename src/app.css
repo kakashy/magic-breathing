@@ -1,0 +1,59 @@
+@font-face {
+	font-family: 'fut';
+	src: url('/fonts/Futura\ Bk\ BT\ Book.ttf');
+}
+:root {
+	--bg: #111110;
+	--fancy-bg: linear-gradient(to bottom, #11111020, #111110), url('/media/bg/nahima.jpg');
+	--col: white;
+	--accent: aquamarine;
+	--shadow: 1px 2px 8px #00000050;
+}
+body::-webkit-scrollbar {
+	width: 0.5rem;
+}
+body::-webkit-scrollbar-thumb {
+	background-color: var(--accent);
+	border-radius: 5px;
+}
+body {
+	font-family: sans-serif;
+	font-family: 'fut';
+	margin: 0;
+	font-size: 15px;
+	background: var(--bg);
+	color: var(--col);
+}
+a {
+	text-decoration: none;
+	color: var(--accent);
+}
+a:hover {
+	filter: hue-rotate(20deg);
+}
+button {
+	cursor: pointer;
+	padding: 8px;
+	margin: 10px;
+	outline: none;
+	border: none;
+	border-radius: 4px;
+	background: white;
+	color: black;
+	font-weight: 700;
+	transition: 0.1s ease-in-out;
+}
+button:hover {
+	background: black;
+	color: white;
+}
+blockquote {
+	padding: 20px;
+	border-radius: 4px;
+	border-left: 2px solid var(--accent);
+	box-shadow: var(--shadow);
+}
+hr {
+	width: 50%;
+	opacity: 0.2;
+}
