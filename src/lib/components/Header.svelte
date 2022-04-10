@@ -1,8 +1,15 @@
+<script>
+	import SearchBar from './search-bar/index.svelte';
+</script>
+
 <header>
-	<span>
-		<img src="/favicon.png" alt="Magic Breathing App" height="20px" />
-	</span>
-	<a href="/"> Magic Breathing App </a>
+	<div>
+		<span>
+			<img src="/favicon.png" alt="Magic Breathing App" height="20px" />
+		</span>
+		<a href="/"> Magic Breathing App </a>
+	</div>
+	<SearchBar />
 </header>
 
 <style>
@@ -19,6 +26,7 @@
 		display: flex;
 		flex-direction: row;
 		align-items: center;
+		justify-content: space-between;
 		z-index: 99;
 	}
 	header a {
