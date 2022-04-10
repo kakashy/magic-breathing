@@ -352,12 +352,7 @@
 {/await}
 
 <style>
-	@media screen and (max-width: 650px) {
-		.action {
-			display: none;
-			opacity: 0;
-		}
-	}
+	
 	@media screen and (min-width: 650px) {
 		.action {
 			margin-left: 10%;

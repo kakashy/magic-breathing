@@ -37,11 +37,17 @@ h1 {
 	height: var(--card-height);
 	min-width: var(--carousel-min-width);
 	transition: filter 0.3s ease;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
 }
 
 @media screen and (max-width: 640px) {
 	.card-carousel {
-		/* margin-left: calc((100vw - var(--carousel-min-width) - 40px) / 2); */
+		margin: 0 auto;
+		margin-left: calc((100vw - var(--carousel-min-width) - 40px) / 2);
 	}
 }
 
@@ -69,7 +75,16 @@ h1 {
 	height: 210px;
 	width: 220px;
 	border-radius: 50%;
+	
 }
 .card.highlight {
 	filter: brightness(1);
+}
+@media screen and (max-width: 550px){
+	.card-carousel .card {
+		flex-direction: column;
+	}
+	.container {
+		padding: 2px;
+	}
 }
