@@ -1,6 +1,7 @@
 <script>
 	import './hero-carousel.css';
 	import { sessionItems } from '$lib/stores';
+	import { fly, scale } from 'svelte/transition';
 	function createCarousel(node) {
 		// const cardsContainer = document.querySelector('.card-carousel');
 		const cardsContainer = node.parentElement;
@@ -209,13 +210,12 @@
 
 					if (data.scale == 0) {
 						card.style.opacity = data.scale;
-						card.lastElementChild.style.display = 'none';
 					} else if (data.scale == 1) {
 						card.style.opacity = 1;
-						card.lastElementChild.style.display = 'block';
+						// this is the top card, I can use its id as index
+						sessionIndex = card.getAttribute('id');
 					} else {
 						card.style.opacity = '0.7';
-						card.lastElementChild.style.display = 'none';
 					}
 				}
 
@@ -320,17 +320,38 @@
 
 		const carousel = new CardCarousel(cardsContainer);
 	}
+	function getUrl(difficulty) {
+		let difficultyUrl;
+
+		switch (difficulty) {
+			case 'easy':
+				difficultyUrl = '/media/icons/network-easy.svg';
+				break;
+			case 'mid':
+				difficultyUrl = '/media/icons/network-mid.svg';
+				break;
+			case 'hard':
+				difficultyUrl = '/media/icons/network-hard.svg';
+				break;
+			default:
+				difficultyUrl = '/media/icons/network.svg';
+				break;
+		}
+		return difficultyUrl;
+	}
+	$: sessionIndex = undefined;
 </script>
 
 {#await $sessionItems}
 	<blockquote>Seiving for those amazing sessions</blockquote>
 {:then sessions}
-	<div class="container">
-		<div class="card-carousel">
-			{#each sessions as session}
-				<div class="card" use:createCarousel>
-					<div class="image" />
-					<div class="action">
+	<section>
+		<div class="container">
+			<div class="card-carousel">
+				{#each sessions as session}
+					<div class="card" id={sessions.indexOf(session)} use:createCarousel>
+						<div class="image" />
+						<!-- <div class="action">
 						<p class="creator">{session.guide}</p>
 						<h1>{session.title}</h1>
 						<div class="meta">
@@ -343,29 +364,72 @@
 							</a>
 							<a href={`/staging/${session.guideId}/${session.sessionId}`}> Learn More </a>
 						</div>
+					</div> -->
 					</div>
-				</div>
-			{/each}
+				{/each}
+			</div>
+			<a href="/" class="visuallyhidden card-controller">Carousel controller</a>
 		</div>
-		<a href="/" class="visuallyhidden card-controller">Carousel controller</a>
-	</div>
+		{#key sessionIndex}
+			{#if sessionIndex}
+				<div class="action">
+					<div class="content">
+						<p class="creator">{sessions[sessionIndex]?.guide}</p>
+						<h1>{sessions[sessionIndex]?.title}</h1>
+						<div class="meta">
+							<p class="rating">{sessions[sessionIndex]?.rating} 🌟</p>
+							<p>{sessions[sessionIndex]?.difficulty}</p>
+							<img
+								src={getUrl(sessions[sessionIndex]?.difficulty)}
+								width="20px"
+								height="20px"
+								alt=""
+							/>
+							<p class="cat">Relaxation</p>
+						</div>
+						<div class="btns">
+							<a
+								href={`/session/${sessions[sessionIndex]?.guideId}/${sessions[sessionIndex]?.sessionId}`}
+							>
+								<button class="start"> Start Session </button>
+							</a>
+							<a
+								href={`/staging/${sessions[sessionIndex]?.guideId}/${sessions[sessionIndex]?.sessionId}`}
+							>
+								Learn More
+							</a>
+						</div>
+					</div>
+					<a
+						class="session-link"
+						href={`/session/${sessions[sessionIndex]?.guideId}/${sessions[sessionIndex]?.sessionId}`}
+					>
+						<button class="next"> &rightarrow </button>
+					</a>
+				</div>
+			{/if}
+		{/key}
+	</section>
 {/await}
 
 <style>
-	
-	@media screen and (min-width: 650px) {
-		.action {
-			margin-left: 10%;
-		}
+	section {
+		display: grid;
+		place-items: center;
+		place-content: center;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 	}
 	.action {
 		padding: 15px;
 		border-radius: 5px;
-		display: none;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
 		z-index: 20;
-		background: #ffffff10;
-		backdrop-filter: blur(10px);
-		transition: 0.4s ease-in-out;
+		height: 150px;
+		max-height: 150px;
+		width: 100%;
+		overflow: hidden;
 	}
 	.creator {
 		font-size: 0.8rem;
@@ -380,16 +444,48 @@
 		align-items: center;
 		justify-content: center;
 		font-size: 0.7rem;
+		text-transform: capitalize;
 	}
 	.meta .cat {
 		opacity: 0.4;
 	}
 	.btns {
-		display: flex;
+		display: none;
 		flex-direction: row;
 		align-items: center;
 	}
 	.start {
 		padding: 8px 35px;
+	}
+	.content {
+		display: flex;
+		flex-direction: column;
+		align-items: start;
+		transition: 0.4s ease-in-out;
+		font-weight: bold;
+	}
+	.content h1 {
+		font-size: 1.8rem;
+	}
+	.next {
+		font-size: 2rem;
+		background: transparent;
+		color: var(--col);
+		border-radius: 50%;
+	}
+	.next:hover {
+		background: black;
+		color: var(--accent);
+	}
+	@media screen and (min-width: 650px) {
+		.action {
+			margin-left: 10%;
+		}
+		.btns {
+			display: flex;
+		}
+		.session-link {
+			display: none;
+		}
 	}
 </style>

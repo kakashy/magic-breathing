@@ -61,12 +61,9 @@ h1 {
 	text-align: center;
 	padding: 1em;
 	min-width: 450px;
-	height: var(--card-height);
+	/* height: var(--card-height); */
 	position: absolute;
 	margin: 0 auto;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
 }
 .card-carousel .card .image {
 	background: url('https://source.unsplash.com/random/500x500');
@@ -75,12 +72,8 @@ h1 {
 	height: 210px;
 	width: 220px;
 	border-radius: 50%;
-	
 }
-.card.highlight {
-	filter: brightness(1);
-}
-@media screen and (max-width: 550px){
+@media screen and (max-width: 550px) {
 	.card-carousel .card {
 		flex-direction: column;
 	}
