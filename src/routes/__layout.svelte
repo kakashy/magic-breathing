@@ -23,5 +23,6 @@
 	main {
 		padding-top: 10px;
 		min-height: 75vh;
+		overflow-x: hidden;
 	}
 </style>

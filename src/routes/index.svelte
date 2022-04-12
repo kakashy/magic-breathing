@@ -26,10 +26,12 @@
 <style>
 	section {
 		padding: 40px 20px;
+		margin: 0 auto;
 		height: 100%;
 		min-height: 80vh;
 		color: white;
 		background: var(--fancy-bg) center;
 		background-size: cover;
+		max-width: 1900px;
 	}
 </style>

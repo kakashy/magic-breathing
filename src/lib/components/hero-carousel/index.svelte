@@ -190,7 +190,7 @@
 
 					return formula;
 				} else if (x > 0) {
-					formula = 95 - (scale * 100 + this.cardWidth) / 2;
+					formula = 95 - (scale * 92 + this.cardWidth) / 2;
 
 					return formula;
 				} else {
@@ -289,7 +289,7 @@
 
 				if (data != null) {
 					this.container.classList.remove('smooth-return');
-					xDist = data.x / 250;
+					xDist = data.x / 300;
 				} else {
 					this.container.classList.add('smooth-return');
 					xDist = 0;
@@ -413,8 +413,8 @@
 <style>
 	section {
 		display: grid;
-		place-items: center;
-		place-content: center;
+		align-items: center;
+		justify-content: space-evenly;
 		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 	}
 	.action {

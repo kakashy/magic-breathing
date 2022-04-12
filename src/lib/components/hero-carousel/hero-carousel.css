@@ -39,7 +39,7 @@
 
 @media screen and (max-width: 640px) {
 	.card-carousel {
-		margin-left: calc((100vw - 300px - 40px) / 9);
+		margin-left: calc((100vw - 180px - 40px) / 9);
 	}
 }
 
@@ -55,21 +55,25 @@
 	min-width: 450px;
 	/* height: var(--card-height); */
 	position: absolute;
-	margin: 0 auto;
 }
 .card-carousel .card .image {
 	background: url('https://source.unsplash.com/random/500x500');
 	background-size: cover;
 	background-position: center;
-	height: 190px;
+	height: 200px;
 	width: 200px;
 	border-radius: 50%;
 }
 @media screen and (max-width: 550px) {
-	.card-carousel .card {
-		flex-direction: column;
-	}
 	.container {
 		padding: 2px;
+	}
+}
+@media screen and (min-width: 550px) {
+	.card-carousel .card {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
 	}
 }
