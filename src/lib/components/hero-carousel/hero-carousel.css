@@ -11,17 +11,10 @@
 	opacity: 0;
 }
 
-h1 {
-	color: white;
-	text-align: center;
-	margin-top: 1em;
-}
-
 .container {
 	overflow: hidden;
 	padding: 20px;
 	margin-top: 2em;
-	background: rgba(0, 0, 0, 0.1);
 	width: 100%;
 }
 
@@ -29,7 +22,7 @@ h1 {
 	--card-width: 80%;
 	--card-max-width: 580px;
 	--card-height: 350px;
-	--carousel-min-width: 600px;
+	--carousel-min-width: 500px;
 	z-index: 1;
 	position: relative;
 	margin: 0 auto;
@@ -46,8 +39,7 @@ h1 {
 
 @media screen and (max-width: 640px) {
 	.card-carousel {
-		margin: 0 auto;
-		margin-left: calc((100vw - var(--carousel-min-width) - 40px) / 2);
+		margin-left: calc((100vw - 300px - 40px) / 9);
 	}
 }
 
@@ -69,8 +61,8 @@ h1 {
 	background: url('https://source.unsplash.com/random/500x500');
 	background-size: cover;
 	background-position: center;
-	height: 210px;
-	width: 220px;
+	height: 190px;
+	width: 200px;
 	border-radius: 50%;
 }
 @media screen and (max-width: 550px) {

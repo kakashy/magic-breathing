@@ -171,7 +171,7 @@
 					const scale = this.calcScale(x),
 						scale2 = this.calcScale2(x),
 						leftPos = this.calcPos(x, scale2),
-						zIndex = -Math.abs(x);
+						zIndex = -Math.abs(parseInt(x));
 
 					this.updateCards(this.xScale[x], {
 						x: x,
@@ -186,11 +186,11 @@
 				let formula;
 
 				if (x < 0) {
-					formula = (scale * 100 - this.cardWidth) / 2;
+					formula = (scale * 90 - this.cardWidth) / 2;
 
 					return formula;
 				} else if (x > 0) {
-					formula = 100 - (scale * 100 + this.cardWidth) / 2;
+					formula = 95 - (scale * 100 + this.cardWidth) / 2;
 
 					return formula;
 				} else {
@@ -215,7 +215,7 @@
 						// this is the top card, I can use its id as index
 						sessionIndex = card.getAttribute('id');
 					} else {
-						card.style.opacity = '0.7';
+						card.style.opacity = data.scale - 0.2;
 					}
 				}
 
@@ -227,7 +227,7 @@
 					if (data.zIndex == 0) {
 						card.classList.add('highlight');
 					} else {
-						card.style.opacity = 0.1;
+						card.classList.remove('highlight');
 					}
 
 					card.style.zIndex = data.zIndex;
@@ -242,7 +242,7 @@
 
 					return formula;
 				} else if (x > 0) {
-					formula = 1 - (1 / 5) * x;
+					formula = 1 + (-1 / 7) * x;
 
 					return formula;
 				}
@@ -267,12 +267,10 @@
 					if (x + rounded > original) {
 						if (x + rounded > this.centerIndex) {
 							newX = x + rounded - 1 - this.centerIndex - rounded + -this.centerIndex;
-							card.lastElementChild.style.display = 'block';
 						}
 					} else if (x + rounded < original) {
 						if (x + rounded < -this.centerIndex) {
 							newX = x + rounded + 1 + this.centerIndex - rounded + this.centerIndex;
-							card.lastElementChild.style.display = 'none';
 						}
 					}
 
@@ -299,7 +297,7 @@
 					for (let x in this.xScale) {
 						this.updateCards(this.xScale[x], {
 							x: x,
-							zIndex: Math.abs(Math.abs(x) - this.centerIndex)
+							zIndex: Math.abs(Math.abs(parseInt(x)) - this.centerIndex)
 						});
 					}
 				}
@@ -373,7 +371,7 @@
 		{#key sessionIndex}
 			{#if sessionIndex}
 				<div class="action">
-					<div class="content">
+					<div class="content" in:fly={{ y: -20, duration: 300 }}>
 						<p class="creator">{sessions[sessionIndex]?.guide}</p>
 						<h1>{sessions[sessionIndex]?.title}</h1>
 						<div class="meta">
