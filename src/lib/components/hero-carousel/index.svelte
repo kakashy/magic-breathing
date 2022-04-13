@@ -190,7 +190,7 @@
 
 					return formula;
 				} else if (x > 0) {
-					formula = 95 - (scale * 92 + this.cardWidth) / 2;
+					formula = 95 - (scale * 88 + this.cardWidth) / 2;
 
 					return formula;
 				} else {
@@ -349,20 +349,6 @@
 				{#each sessions as session}
 					<div class="card" id={sessions.indexOf(session)} use:createCarousel>
 						<div class="image" />
-						<!-- <div class="action">
-						<p class="creator">{session.guide}</p>
-						<h1>{session.title}</h1>
-						<div class="meta">
-							<p class="rating">{session.rating} 🌟</p>
-							<p class="cat">Relaxation</p>
-						</div>
-						<div class="btns">
-							<a href={`/session/${session.guideId}/${session.sessionId}`}>
-								<button class="start"> Start Session </button>
-							</a>
-							<a href={`/staging/${session.guideId}/${session.sessionId}`}> Learn More </a>
-						</div>
-					</div> -->
 					</div>
 				{/each}
 			</div>
