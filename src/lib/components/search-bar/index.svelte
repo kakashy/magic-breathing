@@ -35,7 +35,7 @@
 
 	.search {
 		--easing: cubic-bezier(0.4, 0, 0.2, 1);
-		--font-size: 1rem;
+		--font-size: 0.9rem;
 		--color: white;
 		--color-highlight: rgb(187, 194, 191);
 		--transition-time-icon: 0.2s;

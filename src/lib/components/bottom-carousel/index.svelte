@@ -7,7 +7,7 @@
 		perPage: 6,
 		breakpoints: {
 			1024: {
-				perPage: 5
+				perPage: 4
 			},
 			767: {
 				perPage: 3
@@ -23,6 +23,7 @@
 {#await $sessionItems}
 	<blockquote>Looking for those amazing sessions</blockquote>
 {:then sessions}
+	<h2 class="power">Powerful Techniques</h2>
 	<Splide aria-label="Refreshing Sessions" {options}>
 		{#each sessions as session}
 			<SplideSlide>
@@ -41,3 +42,10 @@
 {:catch error}
 	<pre>Whoops. We made a mis-step. Something went wrong.</pre>
 {/await}
+
+<style>
+	.power {
+		color: gray;
+		opacity: 0.8;
+	}
+</style>

@@ -344,6 +344,8 @@
 	<blockquote>Seiving for those amazing sessions</blockquote>
 {:then sessions}
 	<section>
+		<button class="nav-btn" id="lft"> &leftarrow; </button>
+		<button class="nav-btn" id="rght"> &rightarrow; </button>
 		<div class="container">
 			<div class="card-carousel">
 				{#each sessions as session}
@@ -397,6 +399,28 @@
 {/await}
 
 <style>
+	.nav-btn {
+		background: #80808088;
+		color: white;
+		width: 2rem;
+		height: 2rem;
+		border-radius: 50%;
+		font-weight: bold;
+		font-size: 1.1rem;
+		z-index: 50;
+	}
+	.nav-btn:hover {
+		background: #0d0f12;
+		color: gray;
+	}
+	#lft {
+		position: absolute;
+		left: 10%;
+	}
+	#rght {
+		position: absolute;
+		right: 10%;
+	}
 	section {
 		display: grid;
 		align-items: center;
@@ -462,8 +486,12 @@
 		color: var(--accent);
 	}
 	@media screen and (min-width: 650px) {
+		.nav-btn {
+			display: none;
+		}
 		.action {
 			margin-left: 10%;
+			flex-direction: column;
 		}
 		.btns {
 			display: flex;

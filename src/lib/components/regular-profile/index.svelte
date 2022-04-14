@@ -26,7 +26,7 @@
 
 <div class="reg">
 	<div class="intro">
-		<img src={imgSrc} alt={profName} height="120px" />
+		<img src={imgSrc} alt={profName} height="150px" />
 		<img src={difficultyUrl} width="20px" height="20px" alt="" />
 	</div>
 	<div class="meta">
