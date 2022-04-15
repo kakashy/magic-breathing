@@ -426,7 +426,7 @@
 		display: grid;
 		align-items: center;
 		justify-content: space-evenly;
-		grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 	}
 	.action {
 		padding: 15px;

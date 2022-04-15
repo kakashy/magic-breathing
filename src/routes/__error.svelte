@@ -28,6 +28,7 @@
 			<p>😪This one is on us. Try reloading this page or try another time.</p>
 		{:else}
 			<p>😬This shouldn't happen. <a sveltekit:prefetch href="/">Go back home?</a></p>
+			{error}
 		{/if}
 	</div>
 </section>
