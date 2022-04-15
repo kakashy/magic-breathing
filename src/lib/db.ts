@@ -2,10 +2,19 @@ import { browser } from '$app/env';
 
 export async function getRecords(collectionName: string, parentId: string, documentId: string) {
 	if (browser) {
+		const onlineStat = navigator.onLine;
 		let data = [];
 		const { app } = await import('./app');
-		const { getFirestore, collectionGroup, getDocs, doc, getDoc, enableIndexedDbPersistence } =
-			await import('firebase/firestore');
+		const {
+			getFirestore,
+			collectionGroup,
+			getDocs,
+			doc,
+			getDoc,
+			getDocFromCache,
+			getDocsFromCache,
+			enableIndexedDbPersistence
+		} = await import('firebase/firestore');
 		const db = getFirestore(app);
 
 		// Offline access
@@ -16,7 +25,12 @@ export async function getRecords(collectionName: string, parentId: string, docum
 			localStorage.setItem('offData', 'a');
 		}
 		if (parentId) {
-			const singleDoc = await getDoc(doc(db, 'guide', parentId, 'session', documentId));
+			let singleDoc;
+			if (onlineStat) {
+				singleDoc = await getDocFromCache(doc(db, 'guide', parentId, 'session', documentId));
+			} else {
+				singleDoc = await getDoc(doc(db, 'guide', parentId, 'session', documentId));
+			}
 
 			// Document was found in the cache. If no cached document exists,
 			// an error will be returned to the 'catch' block below.
@@ -26,7 +40,12 @@ export async function getRecords(collectionName: string, parentId: string, docum
 				console.log('It doesnt');
 			}
 		} else {
-			const col = await getDocs(collectionGroup(db, collectionName));
+			let col;
+			if (onlineStat) {
+				col = await getDocs(collectionGroup(db, collectionName));
+			} else {
+				col = await getDocsFromCache(collectionGroup(db, collectionName));
+			}
 			col.forEach((doc) => {
 				let docItem;
 				const docRef = doc.ref;

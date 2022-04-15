@@ -406,8 +406,9 @@
 		height: 2rem;
 		border-radius: 50%;
 		font-weight: bold;
-		font-size: 1.1rem;
+		font-size: 0.9rem;
 		z-index: 50;
+		font-family: serif;
 	}
 	.nav-btn:hover {
 		background: #0d0f12;
