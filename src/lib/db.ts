@@ -27,9 +27,9 @@ export async function getRecords(collectionName: string, parentId: string, docum
 		if (parentId) {
 			let singleDoc;
 			if (onlineStat) {
-				singleDoc = await getDocFromCache(doc(db, 'guide', parentId, 'session', documentId));
-			} else {
 				singleDoc = await getDoc(doc(db, 'guide', parentId, 'session', documentId));
+			} else {
+				singleDoc = await getDocFromCache(doc(db, 'guide', parentId, 'session', documentId));
 			}
 
 			// Document was found in the cache. If no cached document exists,
