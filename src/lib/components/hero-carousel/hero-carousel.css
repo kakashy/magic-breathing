@@ -68,7 +68,7 @@
 }
 @media screen and (max-width: 769px) {
 	.container {
-		padding: 2px;
+		padding: 12px;
 	}
 }
 @media screen and (min-width: 769px) {
