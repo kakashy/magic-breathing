@@ -17,7 +17,6 @@
 			}
 		},
 		arrows: false,
-		gap: '1rem'
 	};
 </script>
 
