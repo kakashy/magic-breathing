@@ -16,7 +16,7 @@
 				perPage: 2
 			}
 		},
-		arrows: false,
+		arrows: false
 	};
 </script>
 

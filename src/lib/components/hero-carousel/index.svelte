@@ -439,6 +439,7 @@
 		max-height: 150px;
 		width: 100%;
 		overflow: hidden;
+		max-width: 100vw;
 	}
 	.creator {
 		font-size: 0.8rem;
