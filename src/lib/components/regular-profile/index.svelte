@@ -46,13 +46,14 @@
 
 <style>
 	.reg {
-		padding: 45px;
+		padding: 30px 15px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
 		gap: 1rem;
 		opacity: 0.8;
+		width: max-content;
 	}
 	.reg:hover {
 		opacity: 1;

@@ -343,7 +343,7 @@
 {#await $sessionItems}
 	<blockquote>Seiving for those amazing sessions</blockquote>
 {:then sessions}
-	<section>
+	<div id="sect">
 		<button class="nav-btn" id="lft"> &leftarrow; </button>
 		<button class="nav-btn" id="rght"> &rightarrow; </button>
 		<div class="container">
@@ -395,7 +395,7 @@
 				</div>
 			{/if}
 		{/key}
-	</section>
+	</div>
 {/await}
 
 <style>
@@ -422,10 +422,8 @@
 		position: absolute;
 		right: 10%;
 	}
-	section {
+	#sect {
 		display: grid;
-		align-items: center;
-		justify-content: space-evenly;
 		grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 	}
 	.action {
@@ -488,6 +486,10 @@
 		color: var(--accent);
 	}
 	@media screen and (min-width: 650px) {
+		#sect {
+			align-items: center;
+			justify-content: space-evenly;
+		}
 		.action {
 			margin-left: 10%;
 			flex-direction: column;

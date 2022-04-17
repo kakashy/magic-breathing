@@ -23,8 +23,8 @@
 .card-carousel {
 	--card-width: 80%;
 	--card-max-width: 580px;
-	--card-height: 350px;
-	--carousel-min-width: 500px;
+	--card-height: 250px;
+	--carousel-min-width: 300px;
 	z-index: 1;
 	position: relative;
 	margin: 0 auto;
@@ -39,7 +39,7 @@
 	gap: 1rem;
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 740px) {
 	.card-carousel {
 		margin-left: calc((100vw - 180px - 40px) / 9);
 	}
@@ -54,7 +54,7 @@
 	max-width: var(--card-max-width);
 	text-align: center;
 	padding: 1em;
-	min-width: 450px;
+	min-width: 250px;
 	/* height: var(--card-height); */
 	position: absolute;
 }

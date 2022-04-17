@@ -16,7 +16,8 @@
 				perPage: 2
 			}
 		},
-		arrows: false
+		arrows: false,
+		gap: '9rem'
 	};
 </script>
 

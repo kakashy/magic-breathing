@@ -25,14 +25,14 @@
 
 <style>
 	section {
-		padding: 40px 10%;
+		padding: 40px 5%;
 		margin: 0 auto;
 		height: 100%;
 		min-height: 80vh;
 		color: white;
 		background: var(--fancy-bg) center;
 		background-size: cover;
-		max-width: 1900px;
+		max-width: 100vw;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
