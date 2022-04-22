@@ -6,7 +6,7 @@ const staticCache = `staticCache-v${version}`;
 self.addEventListener('install', (event) => {
 	event.waitUntil(
 		Promise.all([
-			caches.open('ssrCache').then((cache) => cache.addAll(['/', '/session'])),
+			caches.open('ssrCache').then((cache) => cache.addAll(['/'])),
 			caches.open(applicationCache).then((cache) => cache.addAll(build)),
 			caches.open(staticCache).then((cache) => cache.addAll(files))
 		]).then(self.skipWaiting())
