@@ -9,21 +9,59 @@
 			body: JSON.stringify({
 				id: id
 			})
-		});
-		if (res.ok) {
-			get(sessionDoc);
-			sessionDoc.set(await res.json());
-			return {
-				ok: true
-			};
-		} else {
-		}
-		return {};
+		})
+			.catch((error) => {
+				console.log('We have an error');
+				return {
+					props: {
+						ok: false,
+						ssrData: false,
+						id: id
+					}
+				};
+			})
+			.then(async (result) => {
+				const goodData = await result.json();
+				if (goodData?.length > 0) {
+					get(sessionDoc);
+					sessionDoc.set(goodData);
+					return {
+						ok: true,
+						ssrData: true
+					};
+				} else {
+					return {
+						props: {
+							ssrData: false,
+							id: id
+						}
+					};
+				}
+			});
+		return {
+			props: {
+				id: id
+			}
+		};
 	};
 </script>
 
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import SessionPage from '$lib/components/session-page/index.svelte';
+
+	export let ssrData, id;
+
+	onMount(async () => {
+		const local = new PouchDB('inview');
+		if (ssrData === undefined || !ssrData) {
+			const result = await local.get(id);
+			if (result) {
+				get(sessionDoc);
+				sessionDoc.set(result);
+			}
+		}
+	});
 </script>
 
 <section>

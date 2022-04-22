@@ -6,12 +6,18 @@ export const post = async ({ request }) => {
 			status: 500,
 			ok: false
 		};
+	}).catch(() => {
+		return {
+			status: 500,
+			ok: false
+		};
 	});
 	if (doc) {
+		// await doc.json()
 		return {
 			status: 200,
 			ok: true,
-			body: await doc.json()
+			body: doc
 		};
 	}
 	return {};
