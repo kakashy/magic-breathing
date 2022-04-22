@@ -33,7 +33,7 @@
 		<p class="name">
 			{profName}
 		</p>
-		<a href={`/session/${guideId}/${sessionId}`}>
+		<a href={`/session/${sessionId}`}>
 			<h3 class="course">
 				{courseName}
 			</h3>

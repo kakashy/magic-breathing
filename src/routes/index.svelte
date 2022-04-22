@@ -1,12 +1,29 @@
+<script context="module">
+	import { get } from 'svelte/store';
+	import { sessionItems } from '$lib/stores';
+	export const load = async ({ fetch }) => {
+		const res = await fetch('/db/get-em', {
+			method: 'POST',
+			body: JSON.stringify({
+				params:
+					'_all_docs?include_docs=true&inclusive_end=true&start_key=session&end_key=session%5Cufff0'
+			})
+		});
+		if (res.ok) {
+			get(sessionItems).values;
+			sessionItems.set(await res.json());
+			return {
+				ok: true
+			};
+		} else {
+		}
+		return {};
+	};
+</script>
+
 <script lang="ts">
 	import HeroCarousel from '$lib/components/hero-carousel/index.svelte';
 	import BottomCarousel from '$lib/components/bottom-carousel/index.svelte';
-	import { onMount } from 'svelte';
-	import { getRecords } from '$lib/db';
-	import { sessionItems } from '$lib/stores';
-	onMount(async () => {
-		$sessionItems = getRecords('session', undefined, undefined);
-	});
 </script>
 
 <svelte:head>

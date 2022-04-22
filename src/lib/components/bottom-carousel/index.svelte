@@ -29,13 +29,13 @@
 		{#each sessions as session}
 			<SplideSlide>
 				<RegularProfile
-					guideId={session.guideId}
-					sessionId={session.sessionId}
-					profName={session.guide}
-					imgSrc={session.guideImg}
-					courseName={session.title}
-					rating={session.rating}
-					difficulty={session.difficulty}
+					guideId={session.doc.guideId}
+					sessionId={session.doc._id}
+					profName={session.doc.guide}
+					imgSrc={session.doc.guideImg}
+					courseName={session.doc.title}
+					rating={session.doc.rating}
+					difficulty={session.doc.difficulty}
 				/>
 			</SplideSlide>
 		{/each}

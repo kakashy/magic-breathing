@@ -360,13 +360,13 @@
 			{#if sessionIndex}
 				<div class="action">
 					<div class="content" in:fly={{ y: -20, duration: 300 }}>
-						<p class="creator">{sessions[sessionIndex]?.guide}</p>
-						<h1>{sessions[sessionIndex]?.title}</h1>
+						<p class="creator">{sessions[sessionIndex]?.doc.guide}</p>
+						<h1>{sessions[sessionIndex]?.doc.title}</h1>
 						<div class="meta">
-							<p class="rating">{sessions[sessionIndex]?.rating} 🌟</p>
-							<p>{sessions[sessionIndex]?.difficulty}</p>
+							<p class="rating">{sessions[sessionIndex]?.doc.rating} 🌟</p>
+							<p>{sessions[sessionIndex]?.doc.difficulty}</p>
 							<img
-								src={getUrl(sessions[sessionIndex]?.difficulty)}
+								src={getUrl(sessions[sessionIndex]?.doc.difficulty)}
 								width="20px"
 								height="20px"
 								alt=""
@@ -374,22 +374,13 @@
 							<p class="cat">Relaxation</p>
 						</div>
 						<div class="btns">
-							<a
-								href={`/session/${sessions[sessionIndex]?.guideId}/${sessions[sessionIndex]?.sessionId}`}
-							>
+							<a href={`/session/${sessions[sessionIndex]?.doc._id}`}>
 								<button class="start"> Start Session </button>
 							</a>
-							<a
-								href={`/staging/${sessions[sessionIndex]?.guideId}/${sessions[sessionIndex]?.sessionId}`}
-							>
-								Learn More
-							</a>
+							<a href={`/staging/${sessions[sessionIndex]?.doc._id}`}> Learn More </a>
 						</div>
 					</div>
-					<a
-						class="session-link"
-						href={`/session/${sessions[sessionIndex]?.guideId}/${sessions[sessionIndex]?.sessionId}`}
-					>
+					<a class="session-link" href={`/session/${sessions[sessionIndex]?.doc._id}`}>
 						<button class="next"> &rightarrow </button>
 					</a>
 				</div>
