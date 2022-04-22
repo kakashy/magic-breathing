@@ -13,4 +13,10 @@
 	<body>
 		<div>%svelte.body%</div>
 	</body>
+	<script>
+		if (global === undefined) {
+			var global = window;
+		}
+	</script>
+	<script src="/node_modules/pouchdb/dist/pouchdb.min.js"></script>
 </html>

@@ -9,15 +9,26 @@ export async function post({ request }) {
 		headers: {
 			Accept: 'application/json'
 		}
-	});
-	const matokeo = await res.json();
-	const { rows } = matokeo;
-	if (rows) {
+	}).catch(() => {
 		return {
-			status: 200,
-			ok: true,
-			body: rows
+			status: 500,
+			ok: false
 		};
+	});
+	if (!res.ok) {
+		return {};
+	} else {
+		const matokeo = await res.json();
+		const { rows } = matokeo;
+		if (rows) {
+			return {
+				status: 200,
+				ok: true,
+				body: rows
+			};
+		} else {
+			return {};
+		}
 	}
 	return {};
 }
