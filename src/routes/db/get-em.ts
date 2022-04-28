@@ -9,10 +9,13 @@ export async function post({ request }) {
 		headers: {
 			Accept: 'application/json'
 		}
-	}).catch(() => {
+	}).catch((err) => {
 		return {
 			status: 500,
-			ok: false
+			ok: false,
+			body: {
+				error: err
+			}
 		};
 	});
 	if (!res.ok) {
