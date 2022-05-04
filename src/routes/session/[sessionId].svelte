@@ -4,45 +4,39 @@
 
 	export const load = async ({ params, fetch }) => {
 		const id = params.sessionId;
-		const res = await fetch('/db/pata', {
-			method: 'POST',
-			body: JSON.stringify({
-				id: id
-			})
-		})
-			.catch((error) => {
-				console.log('We have an error');
+		try {
+			const result = await fetch('/db/pata', {
+				method: 'POST',
+				body: JSON.stringify({
+					id: id
+				})
+			});
+			const goodData = await result.json();
+			if (goodData?.length > 0) {
+				get(sessionDoc);
+				sessionDoc.set(goodData);
+				return {
+					ok: true,
+					ssrData: true
+				};
+			} else {
 				return {
 					props: {
-						ok: false,
 						ssrData: false,
 						id: id
 					}
 				};
-			})
-			.then(async (result) => {
-				const goodData = await result.json();
-				if (goodData?.length > 0) {
-					get(sessionDoc);
-					sessionDoc.set(goodData);
-					return {
-						ok: true,
-						ssrData: true
-					};
-				} else {
-					return {
-						props: {
-							ssrData: false,
-							id: id
-						}
-					};
-				}
-			});
-		return {
-			props: {
-				id: id
 			}
-		};
+		} catch (err) {
+			console.log('We have an error');
+			return {
+				props: {
+					ok: false,
+					ssrData: false,
+					id: id
+				}
+			};
+		}
 	};
 </script>
 

@@ -2,46 +2,36 @@
 	import { get } from 'svelte/store';
 	import { sessionItems } from '$lib/stores';
 	export const load = async ({ fetch }) => {
-		const res = await fetch('/db/get-em', {
-			method: 'POST',
-			body: JSON.stringify({
-				params:
-					'_all_docs?include_docs=true&inclusive_end=true&start_key=session&end_key=session%5Cufff0'
-			})
-		})
-			.catch((error) => {
-				console.log('We have an error');
+		try {
+			const result = await fetch('/db/get-em', {
+				method: 'POST',
+				body: JSON.stringify({
+					params:
+						'_all_docs?include_docs=true&inclusive_end=true&start_key=session&end_key=session%5Cufff0'
+				})
+			});
+			const goodData = await result.json();
+			if (goodData?.length > 0) {
+				get(sessionItems).values;
+				sessionItems.set(goodData);
+				return {
+					ok: true,
+					ssrData: true
+				};
+			} else {
 				return {
 					props: {
-						ok: false,
 						ssrData: false
 					}
 				};
-			})
-			.then(async (result) => {
-				const goodData = await result.json();
-				if (goodData?.length > 0) {
-					get(sessionItems).values;
-					sessionItems.set(goodData);
-					return {
-						ok: true,
-						ssrData: true
-					};
-				} else {
-					return {
-						props: {
-							ssrData: false
-						}
-					};
+			}
+		} catch (error) {
+			console.log('We have an error');
+			return {
+				props: {
+					ok: false,
+					ssrData: false
 				}
-			});
-		if (res) {
-			return {
-				ssrData: true
-			};
-		} else {
-			return {
-				ssrData: false
 			};
 		}
 	};
